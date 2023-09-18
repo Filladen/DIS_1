@@ -18,30 +18,42 @@ function getUsers() {
 }
 
 function saveUser() {
-  let username = document.getElementById("username").value
-  let email = document.getElementById("email").value
-  let password = document.getElementById("password").value
+  const username = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-  let user = {
+  const user = {
     username,
     email,
-    password
-  }
+    password,
+  };
 
   axios
     .post("http://localhost:3000/customer", user)
     .then(function (response) {
-      // handle success
-      console.log(response.data);
-      responseDOM.innerHTML = "All users available in console";
+      console.log(response);
     })
     .catch(function (error) {
-      // handle error
       console.log(error);
-    })
-    .finally(function () {
-      // always executed
     });
 }
 
-function saveImage() {}
+function saveImage() {
+  const image = document.getElementById("image").files[0];
+
+  const formData = new FormData();
+  formData.append("image", image);
+
+  axios
+    .post("http://localhost:3000/cloudinary/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
