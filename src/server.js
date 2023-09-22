@@ -13,7 +13,7 @@ app.use("/customer", customerRoute);
 app.use("/cloudinary", cloudinaryRoute);
 
 app.get("/", (req, res) => {
-  res.send("Det virker... nu kan siden tilgås via ip-adressen af alle!");
+  res.send("Det virker..! nu kan alle med ip-adressen tilgå siden");
 });
 
 app.listen(3000, () => {
